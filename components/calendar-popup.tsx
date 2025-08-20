@@ -74,7 +74,7 @@ export function CalendarPopup() {
       <DialogTrigger asChild>
         <Button
           variant="outline"
-          className="gap-2 hover:bg-primary hover:text-primary-foreground transition-colors bg-transparent"
+          className="gap-2 hover:bg-primary hover:text-white transition-colors bg-transparent"
         >
           <Calendar className="h-4 w-4" />
           Book Session

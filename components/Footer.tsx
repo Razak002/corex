@@ -21,7 +21,7 @@ export default function Footer() {
     }
 
     return (
-        <footer className="bg-slate-900 dark:bg-[#070a0f] text-white">
+        <footer className="b text-slate-950 dark:bg-[#070a0f] dark:text-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
                     {/* Brand */}
@@ -32,7 +32,7 @@ export default function Footer() {
                             </div>
                             <span className="font-serif font-bold text-xl">CoreX</span>
                         </div>
-                        <p className="text-gray-300 leading-relaxed">
+                        <p className="dark:text-gray-300 leading-relaxed">
                             Transform your body and mind with our professional fitness programs. Your journey to a healthier lifestyle
                             starts here.
                         </p>
@@ -40,7 +40,7 @@ export default function Footer() {
                             {[Facebook, Twitter, Instagram, Youtube].map((Icon, index) => (
                                 <div
                                     key={index}
-                                    className="bg-gray-800 hover:bg-primary p-2 rounded-lg cursor-pointer transition-all duration-300 hover:scale-110"
+                                    className="bg-primary dark:bg-gray-800 hover:bg-primary p-2 rounded-lg cursor-pointer transition-all duration-300 hover:scale-110"
                                 >
                                     <Icon className="h-5 w-5" />
                                 </div>
@@ -67,7 +67,7 @@ export default function Footer() {
                                                 element.scrollIntoView({ behavior: "smooth" })
                                             }
                                         }}
-                                        className="text-gray-300 hover:text-primary transition-colors duration-300 text-left"
+                                        className="dark:text-gray-300 hover:text-primary transition-colors duration-300 text-left"
                                     >
                                         {link.name}
                                     </button>
@@ -83,7 +83,7 @@ export default function Footer() {
                             {["Personal Training", "Group Classes", "Nutrition Coaching", "Cardio Training", "Weight Lifting"].map(
                                 (service) => (
                                     <li key={service}>
-                                        <a href="#" className="text-gray-300 hover:text-primary transition-colors duration-300">
+                                        <a href="#" className="dark:text-gray-300 hover:text-primary transition-colors duration-300">
                                             {service}
                                         </a>
                                     </li>
@@ -98,15 +98,15 @@ export default function Footer() {
                         <div className="space-y-3 mb-6">
                             <div className="flex items-center space-x-3">
                                 <MapPin className="h-5 w-5 text-primary flex-shrink-0" />
-                                <span className="text-gray-300">25 Fitness Street, FCT Abuja</span>
+                                <span className="dark:text-gray-300">25 Fitness Street, FCT Abuja</span>
                             </div>
                             <div className="flex items-center space-x-3">
                                 <Phone className="h-5 w-5 text-primary flex-shrink-0" />
-                                <span className="text-gray-300">+234 8140165624</span>
+                                <span className="dark:text-gray-300">+234 8140165624</span>
                             </div>
                             <div className="flex items-center space-x-3">
                                 <Mail className="h-5 w-5 text-primary flex-shrink-0" />
-                                <span className="text-gray-300">devabdulrazak@gmail.com</span>
+                                <span className="dark:text-gray-300">devabdulrazak@gmail.com</span>
                             </div>
                         </div>
 
