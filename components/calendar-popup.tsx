@@ -74,7 +74,7 @@ export function CalendarPopup() {
       <DialogTrigger asChild>
         <Button
           variant="outline"
-          className="gap-2 hover:bg-primary hover:text-white transition-colors bg-transparent"
+          className="cursor-pointer gap-2 hover:bg-primary hover:text-white transition-colors bg-transparent"
         >
           <Calendar className="h-4 w-4" />
           Book Session
@@ -127,7 +127,7 @@ export function CalendarPopup() {
                   <Button
                     size="sm"
                     disabled={session.spots >= session.maxSpots}
-                    className="bg-primary hover:bg-primary/90"
+                    className="cursor-pointer bg-primary hover:bg-primary/90"
                   >
                     {session.spots >= session.maxSpots ? "Full" : "Book Now"}
                   </Button>

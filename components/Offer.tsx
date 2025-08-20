@@ -133,7 +133,7 @@ export default function Offer() {
         >
           <Button
             size="lg"
-            className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 text-lg font-semibold rounded-lg transition-all duration-300 animate-pulse-glow group"
+            className="cursor-pointer bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 text-lg font-semibold rounded-lg transition-all duration-300 animate-pulse-glow group"
           >
             JOIN NOW
             <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
@@ -142,7 +142,7 @@ export default function Offer() {
           <Button
             variant="outline"
             size="lg"
-            className="border-white text-white hover:bg-white hover:text-white px-8 py-4 text-lg font-semibold rounded-lg transition-all duration-300 bg-transparent"
+            className="cursor-pointer border-white text-white hover:bg-white hover:text-white px-8 py-4 text-lg font-semibold rounded-lg transition-all duration-300 bg-transparent"
           >
             LEARN MORE
           </Button>

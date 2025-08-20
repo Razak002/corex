@@ -94,7 +94,7 @@ export default function Footer() {
                         element.scrollIntoView({ behavior: "smooth" })
                       }
                     }}
-                    className="dark:text-gray-300 hover:text-primary transition-colors duration-300 text-left"
+                    className="cursor-pointer dark:text-gray-300 hover:text-primary transition-colors duration-300 text-left"
                   >
                     {link.name}
                   </button>
@@ -157,7 +157,7 @@ export default function Footer() {
                   <Button
                     type="submit"
                     size="sm"
-                    className="w-full bg-primary hover:bg-primary/90"
+                    className="cursor-pointer w-full bg-primary hover:bg-primary/90"
                     disabled={isSubscribed}
                   >
                     {isSubscribed ? (
