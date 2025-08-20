@@ -43,6 +43,21 @@ export default function VideoModal({ isOpen, onClose }: VideoModalProps) {
 
     const handleVideoPlay = () => setIsPlaying(true)
     const handleVideoPause = () => setIsPlaying(false)
+    const handleVideoCanPlay = () => setIsPlaying(false)
+    const handleVideoWaiting = () => setIsPlaying(true)
+
+    const videoSources = [
+        {
+            src: "https://res.cloudinary.com/dcdoqivsy/video/upload/v1755722051/20_Minute_Full_Body_Cardio_HIIT_Workout_NO_REPEAT_kcmobc.mp4",
+            type: "video/mp4"
+        },
+        // You can add Cloudinary transformations for different qualities:
+        {
+            src: "https://res.cloudinary.com/dcdoqivsy/video/upload/q_auto,w_1280/v1755722051/20_Minute_Full_Body_Cardio_HIIT_Workout_NO_REPEAT_kcmobc.mp4",
+            type: "video/mp4"
+        }
+    ]
+
 
     return (
         <Dialog open={isOpen} onOpenChange={onClose}>
@@ -68,16 +83,22 @@ export default function VideoModal({ isOpen, onClose }: VideoModalProps) {
                                 muted={isMuted}
                                 loop
                                 playsInline
-                                poster="/bg.jpg"
+                                preload="metadata" // Better for performance
+                                poster="https://res.cloudinary.com/dcdoqivsy/video/upload/so_0/v1755722051/20_Minute_Full_Body_Cardio_HIIT_Workout_NO_REPEAT_kcmobc.jpg" // Auto-generated thumbnail
                                 onError={handleVideoError}
                                 onPlay={handleVideoPlay}
                                 onPause={handleVideoPause}
-                                onLoadedData={() => console.log("[v0] Video loaded successfully")}
+                                onCanPlay={handleVideoCanPlay}
+                                onWaiting={handleVideoWaiting}
+                                onLoadStart={() => setIsPlaying(true)}
+                                onLoadedData={() => console.log("Video loaded successfully")}
                             >
-                                <source src="/gym.mp4" type="video/mp4" />
-                                <source src="/gym.mp4" type="video/mp4" />
+                                {videoSources.map((source, index) => (
+                                    <source key={index} src={source.src} type={source.type} />
+                                ))}
                                 Your browser does not support the video tag.
                             </video>
+
 
                             <Button
                                 variant="ghost"
@@ -89,10 +110,9 @@ export default function VideoModal({ isOpen, onClose }: VideoModalProps) {
                             </Button>
                         </>
                     ) : (
-                        /* YouTube fallback with fitness-related video */
                         <iframe
                             className="w-full h-full"
-                            src="https://www.youtube.com/embed/ML4aLBdFML0?autoplay=1&mute=1&loop=1&playlist=ML4aLBdFML0&controls=1&modestbranding=1"
+                            src="https://www.youtube.com/watch?v=enYITYwvPAQ"
                             title="Fitness Demo Video"
                             frameBorder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

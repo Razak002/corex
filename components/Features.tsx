@@ -123,7 +123,7 @@ export default function Features() {
                         <p className="text-sm text-muted-foreground mb-3">
                           {feature.details}
                         </p>
-                        <div className="flex items-center justify-between">
+                        <div className="flex flex-col  items-center justify-center">
                           <span className="font-bold text-primary text-lg">
                             {feature.price}
                           </span>
