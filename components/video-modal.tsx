@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useRef, useEffect } from "react"
-import { Dialog, DialogContent, DialogHeader } from "@/components/ui/dialog"
+import { Dialog, DialogContent, DialogHeader, DialogTitle, } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { X, Volume2, VolumeX, Play, Pause } from "lucide-react"
 
@@ -48,6 +48,7 @@ export default function VideoModal({ isOpen, onClose }: VideoModalProps) {
         <Dialog open={isOpen} onOpenChange={onClose}>
             <DialogContent className="max-w-5xl w-[95vw] max-h-[90vh] p-0 bg-black border-0 overflow-hidden">
                 <DialogHeader className="absolute top-2 right-2 z-10 sm:top-4 sm:right-4">
+                    <DialogTitle>Corex Demo</DialogTitle>
                     <Button
                         variant="ghost"
                         size="icon"

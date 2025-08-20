@@ -14,6 +14,13 @@ const openSans = Open_Sans({
   display: "swap",
   variable: "--font-open-sans",
 })
+export const metadata = {
+  title: {
+    default: "CoreX Gym",
+    template: "%s | CoreX Gym",
+  },
+  description: "Official website of CoreX Gym. Stay fit, stay strong.",
+}
 
 export default function RootLayout({
   children,

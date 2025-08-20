@@ -5,7 +5,7 @@ import { CheckCircle, Users, Award, Clock, Play, Star, X, ArrowLeft } from "luci
 import Image from "next/image"
 import { useState, useEffect } from "react"
 import CalendlyEmbed from "./CalendlyEmbed"
-
+import { motion, AnimatePresence } from "framer-motion"
 
 const stats = [
   { icon: Users, value: 500, label: "Happy Members", suffix: "+" },
@@ -47,17 +47,17 @@ export default function About() {
 
   const handleCalendlyClick = () => {
     setShowCalendly(true)
-    document.body.style.overflow = 'hidden' // Prevent background scroll
+    document.body.style.overflow = 'hidden'
   }
 
   const handleBackToForm = () => {
     setShowCalendly(false)
-    document.body.style.overflow = 'unset' // Re-enable scroll
+    document.body.style.overflow = 'unset'
   }
 
   const handleCloseModal = () => {
     setShowCalendly(false)
-    document.body.style.overflow = 'unset' // Re-enable scroll
+    document.body.style.overflow = 'unset'
   }
 
   // Animate stats when section comes into view
@@ -96,7 +96,6 @@ export default function About() {
     return () => observer.disconnect()
   }, [])
 
-
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentTestimonial((prev) => (prev + 1) % testimonials.length)
@@ -112,11 +111,25 @@ export default function About() {
 
   return (
     <>
-      <section id="about" className="py-20 bg-background">
+      <motion.section
+        id="about"
+        className="py-20 bg-background"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        viewport={{ once: true }}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            
             {/* Image */}
-            <div className="relative">
+            <motion.div
+              className="relative"
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
               <Image
                 src="/trainer.jpg"
                 alt="About us"
@@ -127,7 +140,7 @@ export default function About() {
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
                 className="rounded-2xl shadow-2xl w-full h-[500px] object-cover"
               />
-              <div className="absolute -bottom-6 -right-6 bg-primary text-primary-foreground p-6 rounded-2xl shadow-xl">
+              <div className="absolute -bottom-6 -right-6 mr-5 sm:mr-0 bg-primary text-primary-foreground p-6 rounded-2xl shadow-xl">
                 <div className="text-center">
                   <div className="text-3xl font-bold">{animatedStats[1]}+</div>
                   <div className="text-sm">Years Experience</div>
@@ -142,10 +155,16 @@ export default function About() {
                   <Play className="h-8 w-8 text-white group-hover:scale-110 transition-transform" />
                 </Button>
               </div>
-            </div>
+            </motion.div>
 
             {/* Content */}
-            <div className="space-y-8">
+            <motion.div
+              className="space-y-8"
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              viewport={{ once: true }}
+            >
               <div>
                 <h2 className="font-serif font-bold text-4xl sm:text-5xl text-foreground mb-6">
                   LEARN MORE
@@ -165,10 +184,17 @@ export default function About() {
                     "Personalized workout plans",
                     "Nutritional guidance included",
                   ].map((item, index) => (
-                    <div key={index} className="flex items-center space-x-3">
+                    <motion.div
+                      key={index}
+                      className="flex items-center space-x-3"
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.2 }}
+                      viewport={{ once: true }}
+                    >
                       <CheckCircle className="h-5 w-5 text-primary flex-shrink-0" />
                       <span className="text-foreground">{item}</span>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
 
@@ -193,7 +219,14 @@ export default function About() {
               {/* Stats */}
               <div className="grid grid-cols-3 gap-6 pt-8 border-t border-border">
                 {stats.map((stat, index) => (
-                  <div key={index} className="text-center">
+                  <motion.div
+                    key={index}
+                    className="text-center"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.2 }}
+                    viewport={{ once: true }}
+                  >
                     <div className="bg-primary/10 p-3 rounded-full w-fit mx-auto mb-3">
                       <stat.icon className="h-6 w-6 text-primary" />
                     </div>
@@ -202,65 +235,85 @@ export default function About() {
                       {stat.suffix}
                     </div>
                     <div className="text-sm text-muted-foreground">{stat.label}</div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
 
               {/* Testimonial */}
-              <div className="bg-muted p-6 rounded-lg">
-                <div className="flex items-center mb-3">
-                  {[...Array(testimonials[currentTestimonial].rating)].map((_, i) => (
-                    <Star key={i} className="h-4 w-4 text-yellow-400 fill-current" />
-                  ))}
-                </div>
-                <p className="text-muted-foreground italic mb-3">{testimonials[currentTestimonial].content}</p>
-                <div className="text-sm">
-                  <div className="font-semibold text-foreground">{testimonials[currentTestimonial].name}</div>
-                  <div className="text-muted-foreground">{testimonials[currentTestimonial].role}</div>
-                </div>
-              </div>
-            </div>
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentTestimonial}
+                  className="bg-muted p-6 rounded-lg"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <div className="flex items-center mb-3">
+                    {[...Array(testimonials[currentTestimonial].rating)].map((_, i) => (
+                      <Star key={i} className="h-4 w-4 text-yellow-400 fill-current" />
+                    ))}
+                  </div>
+                  <p className="text-muted-foreground italic mb-3">{testimonials[currentTestimonial].content}</p>
+                  <div className="text-sm">
+                    <div className="font-semibold text-foreground">{testimonials[currentTestimonial].name}</div>
+                    <div className="text-muted-foreground">{testimonials[currentTestimonial].role}</div>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </motion.div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Calendly Modal */}
-      {showCalendly && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-          <div
-            className="bg-white rounded-lg shadow-lg relative transition-all duration-300 ease-in-out w-full max-w-4xl h-[90vh] max-h-[700px]"
+      <AnimatePresence>
+        {showCalendly && (
+          <motion.div
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
           >
-            <div className="flex flex-col h-full">
-              <div className="flex justify-between items-center p-4 border-b bg-white rounded-t-lg">
-                <button
-                  onClick={handleBackToForm}
-                  className="text-primary flex items-center hover:text-primary transition-colors"
-                >
-                  <ArrowLeft className="h-5 w-5 mr-1" />
-                  Back to form
-                </button>
-                <button
-                  onClick={handleCloseModal}
-                  className="text-gray-500 hover:text-gray-700 transition-colors p-1"
-                >
-                  <X className="h-5 w-5" />
-                </button>
+            <motion.div
+              className="bg-white rounded-lg shadow-lg relative w-full max-w-4xl h-[90vh] max-h-[700px]"
+              initial={{ scale: 0.8, opacity: 0, y: 50 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.8, opacity: 0, y: 50 }}
+              transition={{ duration: 0.4 }}
+            >
+              <div className="flex flex-col h-full">
+                <div className="flex justify-between items-center p-4 border-b bg-white rounded-t-lg">
+                  <button
+                    onClick={handleBackToForm}
+                    className="text-primary flex items-center hover:text-primary transition-colors"
+                  >
+                    <ArrowLeft className="h-5 w-5 mr-1" />
+                    Back to form
+                  </button>
+                  <button
+                    onClick={handleCloseModal}
+                    className="text-gray-500 hover:text-gray-700 transition-colors p-1"
+                  >
+                    <X className="h-5 w-5" />
+                  </button>
+                </div>
+                <div className="flex-grow overflow-hidden">
+                  <CalendlyEmbed
+                    url="https://calendly.com/aliyuabdulrazaks539/30min"
+                    styles={{
+                      height: "100%",
+                      border: "none",
+                      overflow: "hidden",
+                    }}
+                    className="rounded-b-lg"
+                  />
+                </div>
               </div>
-              <div className="flex-grow overflow-hidden">
-                <CalendlyEmbed
-                  url="https://calendly.com/aliyuabdulrazaks539/30min"
-                  styles={{
-                    height: "100%",
-                    border: "none",
-                    overflow: "hidden",
-                  }}
-                  className="rounded-b-lg"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   )
 }
