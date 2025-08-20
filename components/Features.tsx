@@ -129,7 +129,7 @@ export default function Features() {
                           </span>
                           <Button
                             size="sm"
-                            className="bg-primary hover:bg-primary/90"
+                            className="cursor-pointer bg-primary hover:bg-primary/90"
                           >
                             Get Started
                             <ArrowRight className="ml-1 h-3 w-3" />
@@ -139,7 +139,7 @@ export default function Features() {
                     )}
                   </AnimatePresence>
 
-                  <div className="mt-4 text-xs text-muted-foreground">
+                  <div className="underline mt-4 text-xs text-muted-foreground">
                     Click to {expandedCard === index ? "collapse" : "expand"}
                   </div>
                 </CardContent>

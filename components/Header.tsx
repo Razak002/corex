@@ -75,10 +75,10 @@ export default function Header() {
             <Button
               onClick={scrollToFeatures}
               size="lg"
-              className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 text-lg font-semibold rounded-lg transition-all duration-300 group"
+              className="cursor-pointer bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 text-lg font-semibold rounded-lg transition-all duration-300 group"
             >
               JOIN US NOW
-              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="cursor-pointer ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>
 
             <VideoModal
@@ -90,9 +90,9 @@ export default function Header() {
               onClick={openVideoModal}
               variant="outline"
               size="lg"
-              className="border-white text-white hover:bg-white hover:text-black px-8 py-4 text-lg font-semibold rounded-lg transition-all duration-300 group bg-transparent"
+              className="cursor-pointer border-white hover:text-black text-white hover:bg-white dark:border-black dark:text-white dark:hover:text-black dark:hover:bg-white px-8 py-4 text-lg font-semibold rounded-lg transition-all duration-300 group bg-transparent"
             >
-              <Play className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
+              <Play className="cursor-pointer mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
               WATCH DEMO
             </Button>
           </motion.div>

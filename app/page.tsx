@@ -8,7 +8,7 @@ import { Scroll } from "@/components/ScrollTop"
 
 export default function Home() {
   return (
-    <main className="min-h-screen cursor-pointer">
+    <main className="min-h-screen">
       <Navbar />
       <Header />
       <Features />

@@ -189,9 +189,9 @@ export default function About() {
                 <Button
                   size="lg"
                   onClick={handleCalendlyClick}
-                  className="bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/30 rounded-full p-4 sm:p-6 group transition-all duration-300"
+                  className="cursor-pointer bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/30 rounded-full p-4 sm:p-6 group transition-all duration-300"
                 >
-                  <Play className="h-6 w-6 sm:h-8 sm:w-8 text-white group-hover:scale-110 transition-transform" />
+                  <Play className="cursor-pointer h-6 w-6 sm:h-8 sm:w-8 text-white group-hover:scale-110 transition-transform" />
                 </Button>
               </div>
             </motion.div>
@@ -210,7 +210,7 @@ export default function About() {
                   <span className="text-primary"> ABOUT US</span>
                 </h2>
 
-                <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-6 lg:mb-8">
+                <p className="text-base sm:text-lg leading-relaxed mb-6 lg:mb-8">
                   Our main aim and priority is to help you learn new exercises, techniques and training methods to meet
                   your weight-loss, muscle building, heart health or sports performance goals. We provide personalized
                   training programs designed specifically for your fitness journey.
@@ -241,7 +241,7 @@ export default function About() {
                 <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                   <Button
                     size="lg"
-                    className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-primary-foreground px-6 lg:px-8 py-3 lg:py-4 text-sm sm:text-base lg:text-lg font-semibold rounded-lg transition-all duration-300"
+                    className="cursor-pointer w-full sm:w-auto bg-primary hover:bg-primary/90 text-primary-foreground px-6 lg:px-8 py-3 lg:py-4 text-sm sm:text-base lg:text-lg font-semibold rounded-lg transition-all duration-300"
                   >
                     READ MORE
                   </Button>
@@ -249,7 +249,7 @@ export default function About() {
                     size="lg"
                     variant="outline"
                     onClick={handleCalendlyClick}
-                    className="w-full sm:w-auto px-6 lg:px-8 py-3 lg:py-4 text-sm sm:text-base lg:text-lg font-semibold rounded-lg transition-all duration-300"
+                    className="cursor-pointer w-full sm:w-auto px-6 lg:px-8 py-3 lg:py-4 text-sm sm:text-base lg:text-lg font-semibold rounded-lg transition-all duration-300"
                   >
                     BOOK SESSION
                   </Button>
