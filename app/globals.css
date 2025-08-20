@@ -4,9 +4,9 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #475569;
+  --foreground: #14171b;
   --card: #f8fafc;
-  --card-foreground: #059669;
+  --card-foreground: #08694b;
   --popover: #ffffff;
   --popover-foreground: #475569;
   --primary: #059669;
@@ -39,9 +39,9 @@
 }
 
 .dark {
-  --background: #0f172a;
+  --background: #070a0f;
   --foreground: #f1f5f9;
-  --card: #1e293b;
+  --card: #040608;
   --card-foreground: #10b981;
   --popover: #1e293b;
   --popover-foreground: #f1f5f9;

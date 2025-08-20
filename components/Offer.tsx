@@ -73,7 +73,7 @@ export default function Offer() {
           </h2>
 
           <p className="text-xl sm:text-2xl text-gray-200 mb-8 max-w-2xl mx-auto leading-relaxed">
-            Ride with us now, let &apos s build that dream muscle. Get up to 50% off on all membership plans.
+            Ride with us now, let&apos;s build that dream muscle. Get up to 50% off on all membership plans.
           </p>
 
           {/* Offer Details */}
