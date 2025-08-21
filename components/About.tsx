@@ -7,6 +7,7 @@ import Image from "next/image"
 import { useState, useEffect, useCallback, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import CalendlyEmbed from "./CalendlyEmbed"
+import { toast } from "react-toastify"
 
 
 
@@ -143,6 +144,11 @@ export default function About() {
     }
   }, [])
 
+  const notify = () => {
+    toast.success("coming soon!!!");
+
+  };
+
   return (
     <>
       <motion.section
@@ -240,6 +246,7 @@ export default function About() {
                 {/* Buttons */}
                 <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                   <Button
+                    onClick={notify}
                     size="lg"
                     className="cursor-pointer w-full sm:w-auto bg-primary hover:bg-primary/90 text-primary-foreground px-6 lg:px-8 py-3 lg:py-4 text-sm sm:text-base lg:text-lg font-semibold rounded-lg transition-all duration-300"
                   >

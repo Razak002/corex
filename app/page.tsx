@@ -5,6 +5,9 @@ import About from "@/components/About"
 import Offer from "@/components/Offer"
 import Footer from "@/components/Footer"
 import { Scroll } from "@/components/ScrollTop"
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify";
+
 
 export default function Home() {
   return (
@@ -16,6 +19,7 @@ export default function Home() {
       <Offer />
       <Scroll />
       <Footer />
+      <ToastContainer />
     </main>
   )
 }

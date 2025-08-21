@@ -5,8 +5,10 @@ import { ArrowRight, Star, Gift, Timer } from "lucide-react"
 import Image from "next/image"
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
+import { useRouter } from "next/navigation";
 
 export default function Offer() {
+  const router = useRouter()
   const [timeLeft, setTimeLeft] = useState({
     days: 15,
     hours: 8,
@@ -41,6 +43,10 @@ export default function Offer() {
 
     return () => clearInterval(timer)
   }, [])
+
+  const goBackToHome = () => {
+    router.push('/')
+  }
 
   return (
     <section id="offer" className="relative py-20 overflow-hidden">
@@ -132,6 +138,7 @@ export default function Offer() {
           transition={{ duration: 0.6, delay: 0.6 }}
         >
           <Button
+            onClick={goBackToHome}
             size="lg"
             className="cursor-pointer bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 text-lg font-semibold rounded-lg transition-all duration-300 animate-pulse-glow group"
           >
@@ -140,9 +147,10 @@ export default function Offer() {
           </Button>
 
           <Button
+            onClick={goBackToHome}
             variant="outline"
             size="lg"
-            className="cursor-pointer border-white text-white hover:bg-white hover:text-white px-8 py-4 text-lg font-semibold rounded-lg transition-all duration-300 bg-transparent"
+            className="cursor-pointer border-white text-white hover:bg-white dark:hover:text-white hover:text-black px-8 py-4 text-lg font-semibold rounded-lg transition-all duration-300 bg-transparent"
           >
             LEARN MORE
           </Button>

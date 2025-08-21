@@ -4,6 +4,7 @@ import * as React from "react"
 import { Calendar, Clock, MapPin, Users } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { toast } from "react-toastify";
 import {
   Dialog,
   DialogContent,
@@ -69,6 +70,11 @@ export function CalendarPopup() {
     })
   }
 
+  const notify = () => {
+    toast.success("You have successfully booked!");
+
+  };
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -125,6 +131,7 @@ export function CalendarPopup() {
                     </div>
                   </div>
                   <Button
+                    onClick={notify}
                     size="sm"
                     disabled={session.spots >= session.maxSpots}
                     className="cursor-pointer bg-primary hover:bg-primary/90"
