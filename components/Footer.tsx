@@ -1,190 +1,165 @@
 "use client"
 
-import type React from "react"
-import { Dumbbell, Mail, Phone, MapPin, Facebook, Twitter, Instagram, Youtube, Send } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { useState } from "react"
-import { motion } from "framer-motion"
+import { ArrowRight, Star, Gift, Timer } from "lucide-react"
+import Image from "next/image"
+import { useState, useEffect } from "react"
+import { useRouter } from "next/navigation";
 
-export default function Footer() {
-  const [email, setEmail] = useState("")
-  const [isSubscribed, setIsSubscribed] = useState(false)
+export default function Offer() {
+  const router = useRouter()
+  const [timeLeft, setTimeLeft] = useState({
+    days: 15,
+    hours: 8,
+    minutes: 23,
+    seconds: 45,
+  })
 
-  const handleSubscribe = (e: React.FormEvent) => {
-    e.preventDefault()
-    if (email) {
-      setIsSubscribed(true)
-      setEmail("")
-      setTimeout(() => setIsSubscribed(false), 3000)
-    }
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft((prev) => {
+        let { days, hours, minutes, seconds } = prev
+
+        if (seconds > 0) {
+          seconds--
+        } else if (minutes > 0) {
+          minutes--
+          seconds = 59
+        } else if (hours > 0) {
+          hours--
+          minutes = 59
+          seconds = 59
+        } else if (days > 0) {
+          days--
+          hours = 23
+          minutes = 59
+          seconds = 59
+        }
+
+        return { days, hours, minutes, seconds }
+      })
+    }, 1000)
+
+    return () => clearInterval(timer)
+  }, [])
+
+  const goBackToHome = () => {
+    router.push('/')
   }
 
   return (
-    <motion.footer
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-      viewport={{ once: true }}
-      className="text-slate-950 dark:bg-[#070a0f] dark:text-white"
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-4 gap-8"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={{
-            hidden: { opacity: 0 },
-            visible: {
-              opacity: 1,
-              transition: { staggerChildren: 0.2 },
-            },
-          }}
-        >
-          {/* Brand */}
-          <motion.div
-            variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0 } }}
-            transition={{ duration: 0.6 }}
-            className="space-y-4"
-          >
-            <div className="flex items-center space-x-2">
-              <div className="bg-primary p-2 rounded-lg">
-                <Dumbbell className="h-6 w-6 text-primary-foreground" />
-              </div>
-              <span className="font-serif font-bold text-xl">CoreX</span>
-            </div>
-            <p className="dark:text-gray-300 leading-relaxed">
-              Transform your body and mind with our professional fitness programs. Your journey to a healthier lifestyle
-              starts here.
-            </p>
-            <div className="flex space-x-4">
-              {[Facebook, Twitter, Instagram, Youtube].map((Icon, index) => (
-                <motion.div
-                  key={index}
-                  whileHover={{ scale: 1.2 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="bg-primary dark:bg-gray-800 hover:bg-primary p-2 rounded-lg cursor-pointer transition-all duration-300"
-                >
-                  <Icon className="h-5 w-5" />
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Quick Links */}
-          <motion.div
-            variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0 } }}
-            transition={{ duration: 0.6 }}
-          >
-            <h3 className="font-serif font-semibold text-lg mb-4">Quick Links</h3>
-            <ul className="space-y-2">
-              {[
-                { name: "Home", id: "hero" },
-                { name: "Features", id: "features" },
-                { name: "About", id: "about" },
-                { name: "Offer", id: "offer" },
-                { name: "Contact", id: "footer" },
-              ].map((link) => (
-                <li key={link.name}>
-                  <button
-                    onClick={() => {
-                      const element = document.getElementById(link.id)
-                      if (element) {
-                        element.scrollIntoView({ behavior: "smooth" })
-                      }
-                    }}
-                    className="cursor-pointer dark:text-gray-300 hover:text-primary transition-colors duration-300 text-left"
-                  >
-                    {link.name}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-
-          {/* Services */}
-          <motion.div
-            variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0 } }}
-            transition={{ duration: 0.6 }}
-          >
-            <h3 className="font-serif font-semibold text-lg mb-4">Services</h3>
-            <ul className="space-y-2">
-              {["Personal Training", "Group Classes", "Nutrition Coaching", "Cardio Training", "Weight Lifting"].map(
-                (service) => (
-                  <li key={service}>
-                    <a href="#" className="dark:text-gray-300 hover:text-primary transition-colors duration-300">
-                      {service}
-                    </a>
-                  </li>
-                ),
-              )}
-            </ul>
-          </motion.div>
-
-          {/* Contact & Newsletter */}
-          <motion.div
-            variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0 } }}
-            transition={{ duration: 0.6 }}
-          >
-            <h3 className="font-serif font-semibold text-lg mb-4">Contact Info</h3>
-            <div className="space-y-3 mb-6">
-              <div className="flex items-center space-x-3">
-                <MapPin className="h-5 w-5 text-primary flex-shrink-0" />
-                <span className="dark:text-gray-300">25 Fitness Street, FCT Abuja</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <Phone className="h-5 w-5 text-primary flex-shrink-0" />
-                <span className="dark:text-gray-300">+234 8140165624</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <Mail className="h-5 w-5 text-primary flex-shrink-0" />
-                <span className="dark:text-gray-300">devabdulrazak@gmail.com</span>
-              </div>
-            </div>
-
-            <div>
-              <h4 className="font-semibold mb-2">Newsletter</h4>
-              <form onSubmit={handleSubscribe} className="space-y-2">
-                <Input
-                  type="email"
-                  placeholder="Enter your email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="bg-gray-800 border-gray-700 text-white placeholder-gray-400"
-                />
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Button
-                    type="submit"
-                    size="sm"
-                    className="cursor-pointer w-full bg-primary hover:bg-primary/90"
-                    disabled={isSubscribed}
-                  >
-                    {isSubscribed ? (
-                      "Subscribed!"
-                    ) : (
-                      <>
-                        <Send className="h-4 w-4 mr-2" />
-                        Subscribe
-                      </>
-                    )}
-                  </Button>
-                </motion.div>
-              </form>
-            </div>
-          </motion.div>
-        </motion.div>
-
-        <motion.div
-          className="border-t border-gray-800 mt-8 pt-8 text-center"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          viewport={{ once: true }}
-        >
-          <p className="text-gray-400 text-sm">© 2024 CoreX. All rights reserved. | ❤️dev_razak</p>
-        </motion.div>
+    <section id="offer" className="relative py-20 overflow-hidden">
+      {/* Background Image with Overlay */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="/offer.jpg"
+          alt="Summer offer background"
+          fill
+          className="object-cover"
+          quality={100}
+          priority
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/80"></div>
       </div>
-    </motion.footer>
+
+      {/* Content */}
+      <div className="relative z-10 max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+        {/* Badge */}
+        <div
+          className="inline-flex items-center space-x-2 bg-primary/20 backdrop-blur-sm border border-primary/30 rounded-full px-6 py-2 mb-8 animate-fade-in-down"
+        >
+          <Star className="h-4 w-4 text-primary" />
+          <span className="text-primary font-semibold">LIMITED TIME OFFER</span>
+          <Star className="h-4 w-4 text-primary" />
+        </div>
+
+        <h2
+          className="font-serif font-bold text-4xl sm:text-5xl lg:text-6xl text-white mb-6 leading-tight animate-fade-in-up"
+        >
+          A Big <span className="text-primary">OFFER</span>
+          <br />
+          FOR THIS SUMMER
+        </h2>
+
+        <p
+          className="text-xl sm:text-2xl text-gray-200 mb-8 max-w-2xl mx-auto leading-relaxed animate-fade-in animation-delay-300"
+        >
+          Ride with us now, let&apos;s build that dream muscle. Get up to 50% off on all membership plans.
+        </p>
+
+        {/* Offer Details */}
+        <div
+          className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-10 max-w-2xl mx-auto"
+        >
+          {[
+            { icon: Gift, title: "50%", subtitle: "OFF" },
+            { icon: Timer, title: "3", subtitle: "MONTHS FREE" },
+            { icon: Star, title: "24/7", subtitle: "ACCESS" },
+          ].map((item, i) => (
+            <div
+              key={i}
+              className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20 hover:bg-white/20 transition-colors group animate-scale-in"
+              style={{ animationDelay: `${i * 0.2 + 0.4}s` }}
+            >
+              <item.icon className="h-6 w-6 text-primary mx-auto mb-2 group-hover:scale-110 transition-transform" />
+              <div className="text-2xl font-bold text-primary">{item.title}</div>
+              <div className="text-white text-sm">{item.subtitle}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* Buttons */}
+        <div
+          className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-up animation-delay-600"
+        >
+          <Button
+            onClick={goBackToHome}
+            size="lg"
+            className="cursor-pointer bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 text-lg font-semibold rounded-lg transition-all duration-300 animate-pulse-glow group"
+          >
+            JOIN NOW
+            <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+          </Button>
+
+          <Button
+            onClick={goBackToHome}
+            variant="outline"
+            size="lg"
+            className="cursor-pointer border-white text-white hover:bg-white dark:hover:text-white hover:text-black px-8 py-4 text-lg font-semibold rounded-lg transition-all duration-300 bg-transparent"
+          >
+            LEARN MORE
+          </Button>
+        </div>
+
+        {/* Countdown */}
+        <div
+          className="mt-8 text-white/80 animate-fade-in animation-delay-1000"
+        >
+          <p className="text-sm mb-2 flex items-center justify-center gap-2">
+            <Timer className="h-4 w-4" />
+            Offer expires in:
+          </p>
+          <div className="flex justify-center space-x-4 text-2xl font-bold">
+            <div className="bg-primary/20 backdrop-blur-sm rounded-lg px-3 py-2 min-w-[60px] hover:bg-primary/30 transition-colors">
+              <div>{timeLeft.days.toString().padStart(2, "0")}</div>
+              <div className="text-xs text-white/60">DAYS</div>
+            </div>
+            <div className="bg-primary/20 backdrop-blur-sm rounded-lg px-3 py-2 min-w-[60px] hover:bg-primary/30 transition-colors">
+              <div>{timeLeft.hours.toString().padStart(2, "0")}</div>
+              <div className="text-xs text-white/60">HRS</div>
+            </div>
+            <div className="bg-primary/20 backdrop-blur-sm rounded-lg px-3 py-2 min-w-[60px] hover:bg-primary/30 transition-colors">
+              <div>{timeLeft.minutes.toString().padStart(2, "0")}</div>
+              <div className="text-xs text-white/60">MIN</div>
+            </div>
+            <div className="bg-primary/20 backdrop-blur-sm rounded-lg px-3 py-2 min-w-[60px] hover:bg-primary/30 transition-colors">
+              <div>{timeLeft.seconds.toString().padStart(2, "0")}</div>
+              <div className="text-xs text-white/60">SEC</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   )
 }

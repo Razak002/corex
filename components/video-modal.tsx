@@ -51,7 +51,7 @@ export default function VideoModal({ isOpen, onClose }: VideoModalProps) {
             src: "https://res.cloudinary.com/dcdoqivsy/video/upload/v1755722051/20_Minute_Full_Body_Cardio_HIIT_Workout_NO_REPEAT_kcmobc.mp4",
             type: "video/mp4"
         },
-        // You can add Cloudinary transformations for different qualities:
+
         {
             src: "https://res.cloudinary.com/dcdoqivsy/video/upload/q_auto,w_1280/v1755722051/20_Minute_Full_Body_Cardio_HIIT_Workout_NO_REPEAT_kcmobc.mp4",
             type: "video/mp4"

@@ -11,7 +11,7 @@ import { ToastContainer } from "react-toastify";
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
+    <main className="w-full h-full">
       <Navbar />
       <Header />
       <Features />

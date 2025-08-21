@@ -4,7 +4,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Dumbbell, Target, Zap, Heart, ArrowRight } from "lucide-react";
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 
 const features = [
   {
@@ -52,12 +51,8 @@ export default function Features() {
     <section id="features" className="py-20 bg-muted">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Heading */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
+        <div
+          className="text-center mb-16 animate-fade-in-up"
         >
           <h2 className="font-serif font-bold text-4xl sm:text-5xl text-foreground mb-4">
             FEATURES
@@ -67,17 +62,15 @@ export default function Features() {
             Discover our comprehensive fitness programs designed to help you
             achieve your goals
           </p>
-        </motion.div>
+        </div>
 
         {/* Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {features.map((feature, index) => (
-            <motion.div
+            <div
               key={index}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.15 }}
-              viewport={{ once: true }}
+              className="animate-fade-in-up"
+              style={{ animationDelay: `${index * 0.15}s` }}
             >
               <Card
                 className={`group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 bg-card border-border cursor-pointer ${
@@ -90,13 +83,11 @@ export default function Features() {
                 <CardContent className="p-8 text-center">
                   {/* Icon */}
                   <div className="mb-6 flex justify-center">
-                    <motion.div
-                      whileHover={{ scale: 1.1, rotate: 5 }}
-                      transition={{ type: "spring", stiffness: 300 }}
-                      className="bg-primary/10 p-4 rounded-full group-hover:bg-primary transition-colors"
+                    <div
+                      className="bg-primary/10 p-4 rounded-full group-hover:bg-primary transition-all duration-300 hover:scale-110 hover:rotate-6"
                     >
                       <feature.icon className="h-8 w-8 text-primary group-hover:text-primary-foreground transition-colors duration-300" />
-                    </motion.div>
+                    </div>
                   </div>
 
                   {/* Title */}
@@ -109,42 +100,35 @@ export default function Features() {
                     {feature.description}
                   </p>
 
-                  {/* Expandable Details with AnimatePresence */}
-                  <AnimatePresence>
-                    {expandedCard === index && (
-                      <motion.div
-                        key="details"
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: "auto" }}
-                        exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.4 }}
-                        className="mt-4 p-4 bg-primary/5 rounded-lg border border-primary/20"
-                      >
-                        <p className="text-sm text-muted-foreground mb-3">
-                          {feature.details}
-                        </p>
-                        <div className="flex flex-col  items-center justify-center">
-                          <span className="font-bold text-primary text-lg">
-                            {feature.price}
-                          </span>
-                          <Button
-                            size="sm"
-                            className="cursor-pointer bg-primary hover:bg-primary/90"
-                          >
-                            Get Started
-                            <ArrowRight className="ml-1 h-3 w-3" />
-                          </Button>
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                  {/* Expandable Details */}
+                  {expandedCard === index && (
+                    <div
+                      className="mt-4 p-4 bg-primary/5 rounded-lg border border-primary/20 animate-slide-down"
+                    >
+                      <p className="text-sm text-muted-foreground mb-3">
+                        {feature.details}
+                      </p>
+                      <div className="flex flex-col  items-center justify-center">
+                        <span className="font-bold text-primary text-lg">
+                          {feature.price}
+                        </span>
+                        <Button
+                          size="sm"
+                          className="cursor-pointer bg-primary hover:bg-primary/90"
+                        >
+                          Get Started
+                          <ArrowRight className="ml-1 h-3 w-3" />
+                        </Button>
+                      </div>
+                    </div>
+                  )}
 
                   <div className="underline mt-4 text-xs text-muted-foreground">
                     Click to {expandedCard === index ? "collapse" : "expand"}
                   </div>
                 </CardContent>
               </Card>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
